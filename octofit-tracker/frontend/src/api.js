@@ -1,5 +1,8 @@
 export const getApiBaseUrl = () => {
-  const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+  const rawCodespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+  const codespaceName = rawCodespaceName && rawCodespaceName !== 'undefined' && rawCodespaceName !== 'null'
+    ? rawCodespaceName
+    : ''
 
   if (codespaceName) {
     return `https://${codespaceName}-8000.app.github.dev`

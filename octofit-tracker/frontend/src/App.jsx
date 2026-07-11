@@ -6,7 +6,10 @@ import Users from './components/Users'
 import Workouts from './components/Workouts'
 
 function App() {
-  const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+  const rawCodespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+  const codespaceName = rawCodespaceName && rawCodespaceName !== 'undefined' && rawCodespaceName !== 'null'
+    ? rawCodespaceName
+    : ''
   const apiBaseUrl = codespaceName
     ? `https://${codespaceName}-8000.app.github.dev`
     : 'http://localhost:8000'
